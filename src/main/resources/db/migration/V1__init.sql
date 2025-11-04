@@ -1,0 +1,11 @@
+CREATE TABLE IF NOT EXISTS lead (
+    id UUID PRIMARY KEY,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    name VARCHAR(120) NOT NULL,
+    email VARCHAR(160) NOT NULL UNIQUE,
+    phone VARCHAR(40),
+    score INT NOT NULL DEFAULT 0
+);
+
+CREATE INDEX IF NOT EXISTS idx_lead_email ON lead(email);
