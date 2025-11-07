@@ -10,7 +10,6 @@ final class LeadJpaMapper {
     // Converte do domínio para a entidade JPA (para salvar no banco)
     static LeadJpaEntity toEntity(Lead d) {
         var e = new LeadJpaEntity();
-        e.setId(d.getId());
         e.setName(d.getName());
         e.setEmail(d.getEmail());
         e.setPhone(d.getPhone());

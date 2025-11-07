@@ -19,7 +19,6 @@ public class Lead {
     // Fábrica estática para garantir invariantes
     public static Lead create(String name, String email, String phone) {
         var lead = new Lead();
-        lead.id = UUID.randomUUID();
         lead.createdAt = OffsetDateTime.now();
         lead.updatedAt = lead.createdAt;
         lead.name = name;
