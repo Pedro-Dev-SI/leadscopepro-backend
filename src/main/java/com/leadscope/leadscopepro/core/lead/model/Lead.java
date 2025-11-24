@@ -1,5 +1,8 @@
 package com.leadscope.leadscopepro.core.lead.model;
 
+import com.leadscope.leadscopepro.shared.vo.Email;
+import com.leadscope.leadscopepro.shared.vo.Phone;
+
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
@@ -12,21 +15,32 @@ public class Lead {
     private OffsetDateTime createdAt;
     private OffsetDateTime updatedAt;
     private String name;
-    private String email;
-    private String phone;
+    private Email email;
+    private Phone phone;
     private Integer score;
 
     // Fábrica estática para garantir invariantes
-    public static Lead create(String name, String email, String phone) {
+    public static Lead create(String name, String emailRaw, String phoneRaw) {
         var lead = new Lead();
-        lead.id = UUID.randomUUID();
         lead.createdAt = OffsetDateTime.now();
         lead.updatedAt = lead.createdAt;
         lead.name = name;
-        lead.email = email;
-        lead.phone = phone;
+        lead.email = Email.of(emailRaw);
+        lead.phone = Phone.of(phoneRaw);
         lead.score = 0;
         return lead;
+    }
+
+    public void touch() { this.updatedAt = OffsetDateTime.now(); }
+
+    private static String requiredName(String name) {
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException("Name cannot be null or empty");
+        }
+        if (name.length() > 120) {
+            throw new IllegalArgumentException("Name cannot be longer than 120 characters");
+        }
+        return name.trim();
     }
 
     public UUID getId() {
@@ -61,19 +75,19 @@ public class Lead {
         this.name = name;
     }
 
-    public String getEmail() {
+    public Email getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(Email email) {
         this.email = email;
     }
 
-    public String getPhone() {
+    public Phone getPhone() {
         return phone;
     }
 
-    public void setPhone(String phone) {
+    public void setPhone(Phone phone) {
         this.phone = phone;
     }
 

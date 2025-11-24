@@ -1,6 +1,8 @@
 package com.leadscope.leadscopepro.infra.db;
 
 import com.leadscope.leadscopepro.core.lead.model.Lead;
+import com.leadscope.leadscopepro.shared.vo.Email;
+import com.leadscope.leadscopepro.shared.vo.Phone;
 
 
 // Mapper entre "domínio" e "JPA" (ida e volta).
@@ -12,8 +14,8 @@ final class LeadJpaMapper {
         var e = new LeadJpaEntity();
         e.setId(d.getId());
         e.setName(d.getName());
-        e.setEmail(d.getEmail());
-        e.setPhone(d.getPhone());
+        e.setEmail(d.getEmail() != null ? d.getEmail().value() : null);
+        e.setPhone(d.getPhone()  !=  null ? d.getPhone().value() : null);
         e.setScore(d.getScore());
         e.setCreatedAt(d.getCreatedAt());
         e.setUpdatedAt(d.getUpdatedAt());
@@ -26,8 +28,8 @@ final class LeadJpaMapper {
         var d = new Lead();
         d.setId(e.getId());
         d.setName(e.getName());
-        d.setEmail(e.getEmail());
-        d.setPhone(e.getPhone());
+        d.setEmail(Email.of(e.getEmail()));
+        d.setPhone(Phone.of(e.getPhone()));
         d.setScore(e.getScore());
         d.setCreatedAt(e.getCreatedAt());
         d.setUpdatedAt(e.getUpdatedAt());

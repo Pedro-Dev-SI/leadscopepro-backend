@@ -12,8 +12,8 @@ final class LeadWebMapper {
         return new LeadResponse(
                 d.getId(),
                 d.getName(),
-                d.getEmail(),
-                d.getPhone(),
+                d.getEmail() != null ? d.getEmail().value() : null,
+                d.getPhone() != null ? d.getPhone().value() : null,
                 d.getScore()
         );
     }
