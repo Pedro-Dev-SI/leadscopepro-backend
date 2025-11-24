@@ -1,7 +1,7 @@
 spring:
   application.name: leadscope-pro
   datasource:
-    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:leadscope}
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5434}/${DB_NAME:leadscope}
     username: ${DB_USER:lead}
     password: ${DB_PASS:leadpass}
   jpa:

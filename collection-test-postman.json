@@ -1,0 +1,66 @@
+{
+  "info": {
+    "_postman_id": "b73de78c-1f31-4e5b-b68f-123456789abc",
+    "name": "LeadScope Pro - Módulo 1",
+    "description": "Coleção para testar os endpoints do projeto LeadScope Pro (Módulo 1) - API de Leads, Health Check e exemplos de variáveis de ambiente.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "🩺 Health Check (Actuator)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/actuator/health",
+          "host": ["{{baseUrl}}"],
+          "path": ["actuator", "health"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "📥 Criar Lead",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Ada Lovelace\",\n  \"email\": \"ada@leadscope.io\",\n  \"phone\": \"+55 35 99999-1234\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/leads",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "leads"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "📄 Listar Leads",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/leads",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "leads"]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080",
+      "type": "string"
+    }
+  ]
+}
